@@ -41,7 +41,7 @@ typedef struct {
     Uint32 start_ticks;   /* when the round started */
     int time_up;          /* 1 = time ran out */
 } Game;
-
+void lot6();
 int  init_game(SDL_Renderer *r, Game *g);
 void new_round(SDL_Renderer *r, Game *g);
 void free_game(Game *g);
