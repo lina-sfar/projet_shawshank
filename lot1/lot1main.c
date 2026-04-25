@@ -14,6 +14,11 @@ int main() {
     SDL_Renderer* ren = SDL_CreateRenderer(win, -1, SDL_RENDERER_ACCELERATED);
 
     run_lot1(ren);
+    run_lot2(ren);
+    run_lot3(ren);
+    run_lot4(ren);
+    run_lot5(ren);
+    run_lot6(ren);
 
     SDL_DestroyRenderer(ren);
     SDL_DestroyWindow(win);
