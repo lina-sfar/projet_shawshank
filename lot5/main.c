@@ -26,7 +26,7 @@ int souris_sur_reponse(int x, int y, SDL_Rect rect) {
     return (x >= rect.x && x <= rect.x + rect.w && y >= rect.y && y <= rect.y + rect.h);
 }
 
-int main(int argc, char* argv[]) {
+void lot5(int argc, char* argv[]) {
     SDL_Init(SDL_INIT_VIDEO);
     TTF_Init();
     srand(time(NULL));
