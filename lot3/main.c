@@ -4,7 +4,7 @@
 #include <SDL2/SDL_image.h>
 #include <stdio.h>
 
-int main() {
+void lot3() {
     printf("\n========== JEU AVEC BACKGROUNDS ==========\n");
     printf("  ← →  : Deplacer le personnage\n");
     printf("  ↑    : SAUTER\n");
