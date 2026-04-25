@@ -62,7 +62,7 @@ typedef struct {
     int mode_ecran; 
 } Background;
 
-
+void lot2();
 void initialiser_background(Background* bg, int level);
 void afficher_plateformes(SDL_Renderer* renderer, Background* bg);
 void scrolling(Background* bg, int dx, int dy);
