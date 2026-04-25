@@ -56,6 +56,7 @@ typedef struct {
 } Niveau;
 
 // Fonctions
+void lot3();
 void initialiser_npc(Niveau* niveau, int level, SDL_Renderer* renderer);
 void afficher_npc(SDL_Renderer* renderer, Niveau* niveau);
 void deplacement_aleatoire(Ennemi* e);
