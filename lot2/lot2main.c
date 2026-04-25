@@ -1,7 +1,7 @@
 #include "lot2.h"
 #include <SDL2/SDL.h>
 
-int main() {
+void lot2() {
     printf("\n=== TEST LOT 2 - BACKGROUND ===\n");
     printf("Commandes:\n");
     printf("  Fleches → Scrolling\n");
