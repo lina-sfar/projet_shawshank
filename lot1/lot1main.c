@@ -1,17 +1,59 @@
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_ttf.h>
+#include <SDL2/SDL_mixer.h>
+
 #include "lot1.h"
-#include "lot3.h"
 #include "lot2.h"
+#include "lot3.h"
 #include "lot4.h"
 #include "lot5.h"
 #include "lot6.h"
 
 int main() {
-    SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO);
-    TTF_Init();
-    Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048);
+    // Init SDL systems
+    if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) < 0) {
+        return 1;
+    }
 
-    SDL_Window* win = SDL_CreateWindow("LOT1 - Deux joueurs", 100, 100, 800, 600, SDL_WINDOW_SHOWN);
+    if (TTF_Init() == -1) {
+        SDL_Quit();
+        return 1;
+    }
+
+    if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0) {
+        TTF_Quit();
+        SDL_Quit();
+        return 1;
+    }
+
+    // Create window + renderer
+    SDL_Window* win = SDL_CreateWindow(
+        "Game Project",
+        100, 100,
+        800, 600,
+        SDL_WINDOW_SHOWN
+    );
+
+    if (!win) {
+        Mix_Quit();
+        TTF_Quit();
+        SDL_Quit();
+        return 1;
+    }
+
     SDL_Renderer* ren = SDL_CreateRenderer(win, -1, SDL_RENDERER_ACCELERATED);
+
+    if (!ren) {
+        SDL_DestroyWindow(win);
+        Mix_Quit();
+        TTF_Quit();
+        SDL_Quit();
+        return 1;
+    }
+
+    // =========================
+    // GAME FLOW (LOTS)
+    // =========================
 
     run_lot1(ren);
     run_lot2(ren);
@@ -20,10 +62,16 @@ int main() {
     run_lot5(ren);
     run_lot6(ren);
 
+    // =========================
+    // CLEANUP
+    // =========================
+
     SDL_DestroyRenderer(ren);
     SDL_DestroyWindow(win);
+
     Mix_Quit();
     TTF_Quit();
     SDL_Quit();
+
     return 0;
 }
