@@ -11,6 +11,7 @@
 #define LEVEL_WIDTH 2000
 #define LEVEL_HEIGHT 2000
 
+// ================== TYPES ==================
 
 typedef enum {
     PLATFORM_FIXE,
@@ -35,7 +36,6 @@ typedef struct {
     int levelWidth, levelHeight;
 } Camera;
 
-
 typedef struct {
     Uint32 startTime;
     Uint32 currentTime;
@@ -51,7 +51,6 @@ typedef struct {
     SDL_Texture* texture;
 } GuideWindow;
 
-
 typedef struct {
     Plateforme plateformes[50];
     int nbPlateformes;
@@ -59,15 +58,20 @@ typedef struct {
     GameTimer timer;
     GuideWindow guides[5];
     int nbGuides;
-    int mode_ecran; 
+    int mode_ecran;
 } Background;
 
-void run_lot2(SDL_Renderer* ren)
+// ================== FUNCTIONS ==================
+
+void run_lot2(SDL_Renderer* renderer);
+
 void initialiser_background(Background* bg, int level);
 void afficher_plateformes(SDL_Renderer* renderer, Background* bg);
 void scrolling(Background* bg, int dx, int dy);
 void partage_ecran(Background* bg, int mode);
+
 void afficher_temps(SDL_Renderer* renderer, TTF_Font* font, GameTimer* timer, int x, int y);
+
 void init_guide(GuideWindow* guide, int x, int y, int w, int h, const char* titre, const char* contenu);
 void afficher_guide(SDL_Renderer* renderer, GuideWindow* guide);
 
@@ -75,4 +79,3 @@ void mettre_a_jour_plateformes(Background* bg, float dt);
 void update_timer(GameTimer* timer);
 
 #endif
-
