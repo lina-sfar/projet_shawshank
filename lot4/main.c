@@ -24,7 +24,7 @@ static SDL_Texture *load_texture(SDL_Renderer *renderer, const char *filename)
     return texture;
 }
 
-int main(int argc, char *argv[])
+void lot4(int argc, char *argv[])
 {
     SDL_Window *window;
     SDL_Renderer *renderer;
