@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include "puzzle.h"
 
-int main()
+void lot6()
 {
     SDL_Init(SDL_INIT_VIDEO);
     TTF_Init();
