@@ -13,22 +13,23 @@
 #define MAX_WALK_FRAMES 6
 #define MAX_ATTACK_FRAMES 4
 
+// ================= ENNEMY =================
+
 typedef struct {
     int x, y, w, h;
     int pv, pv_max;
     int degats;
     int score_valeur;
-    int type; // 0=normal, 1=volant
-    int trajectoire; // 0=lineaire, 1=sinus
+    int type;
+    int trajectoire;
     float vitesse;
     int direction;
     float startX, startY;
     float angle;
     bool actif;
     int timer_attaque;
-    int etat_sante; // 0=vivant, 1=blesse, 2=neutralise, 3=mort
+    int etat_sante;
 
-    // --- Animation avec textures individuelles ---
     SDL_Texture* walk_frames[MAX_WALK_FRAMES];
     SDL_Texture* attack_frames[MAX_ATTACK_FRAMES];
     SDL_Texture* current_texture;
@@ -38,13 +39,17 @@ typedef struct {
     int animation_speed;
 } Ennemi;
 
+// ================= ITEMS =================
+
 typedef struct {
     int x, y, w, h;
-    int type; // 1=score, 2=vie, 3=pv
+    int type;
     int valeur;
     bool actif;
     SDL_Texture* texture;
 } ElementSpecial;
+
+// ================= LEVEL =================
 
 typedef struct {
     int niveau;
@@ -55,8 +60,11 @@ typedef struct {
     SDL_Texture* background;
 } Niveau;
 
-// Fonctions
-void run_lot3(SDL_Renderer* ren)
+// ================= FUNCTIONS =================
+
+// MAIN ENTRY POINT OF LOT3
+void run_lot3(SDL_Renderer* renderer);
+
 void initialiser_npc(Niveau* niveau, int level, SDL_Renderer* renderer);
 void afficher_npc(SDL_Renderer* renderer, Niveau* niveau);
 void deplacement_aleatoire(Ennemi* e);
