@@ -34,5 +34,5 @@ typedef struct {
     SDL_Rect pos_rep2;
     SDL_Rect pos_rep3;
 } Enigme;
-
+void lot5
 #endif
