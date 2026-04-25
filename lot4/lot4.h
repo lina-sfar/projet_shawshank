@@ -16,7 +16,7 @@ typedef struct
 {
     SDL_Rect posob;
 } obstacle;
-void lot4();
+void run_lot4(SDL_Renderer* ren);
 void initmap(minimap *m, SDL_Renderer *renderer);
 void MAJMinimap(minimap *m, SDL_Rect posPerso);
 void afficherminimap(minimap m, SDL_Renderer *renderer, int currentLevel);
