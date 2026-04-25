@@ -1,4 +1,9 @@
 #include "lot1.h"
+#include "lot3.h"
+#include "lot2.h"
+#include "lot4.h"
+#include "lot5.h"
+#include "lot6.h"
 
 int main() {
     SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO);
