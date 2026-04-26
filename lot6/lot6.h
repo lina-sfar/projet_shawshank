@@ -4,6 +4,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
 #include <SDL2/SDL_image.h>
+#include <stdbool.h>
 
 #define PIECE_W   150
 #define PIECE_H   150
@@ -13,16 +14,18 @@
 #define WINDOW_W  800
 #define WINDOW_H  560
 
-#define TIMER_SECONDS 10   /* countdown duration */
+#define TIMER_SECONDS 10
+
+// ================= STRUCTS =================
 
 typedef struct {
     SDL_Texture *texture;
     int piece_index;
-    SDL_Rect rect;        /* current drawn position */
-    SDL_Rect home;        /* original resting position on the right */
+    SDL_Rect rect;
+    SDL_Rect home;
     int is_correct;
-    int wrong_flash;      /* ticks when wrong drop happened */
-    int visible;          /* 0 = being dragged (don't draw in list) */
+    int wrong_flash;
+    int visible;
 } Choice;
 
 typedef struct {
@@ -30,22 +33,28 @@ typedef struct {
     SDL_Texture *pieces[9];
     int missing;
     Choice choices[3];
-    int solved;           /* 1 = correct piece placed */
+    int solved;
     int img_index;
 
-    /* drag state */
-    int dragging;         /* index into choices[], -1 = none */
-    int drag_ox, drag_oy; /* offset from piece origin to mouse */
+    int dragging;
+    int drag_ox;
+    int drag_oy;
 
-    /* timer */
-    Uint32 start_ticks;   /* when the round started */
-    int time_up;          /* 1 = time ran out */
+    Uint32 start_ticks;
+    int time_up;
 } Game;
-void run_lot6(SDL_Renderer* ren);
-int  init_game(SDL_Renderer *r, Game *g);
-void new_round(SDL_Renderer *r, Game *g);
+
+// ================= FUNCTIONS =================
+
+void run_lot6(SDL_Renderer* renderer);
+
+int  init_game(SDL_Renderer *renderer, Game *g);
+void new_round(SDL_Renderer *renderer, Game *g);
 void free_game(Game *g);
-void draw_game(SDL_Renderer *r, TTF_Font *font, TTF_Font *small, Game *g, int mx, int my);
+
+void draw_game(SDL_Renderer *renderer, TTF_Font *font, TTF_Font *small,
+               Game *g, int mx, int my);
+
 void handle_mousedown(Game *g, int mx, int my);
 void handle_mouseup(Game *g, int mx, int my);
 void handle_mousemove(Game *g, int mx, int my);
