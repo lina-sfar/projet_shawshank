@@ -34,7 +34,8 @@ int initButton(Button* btn, SDL_Renderer* renderer,
 
 void handleButton(Button* btn, SDL_Event* e)
 {
-    if (e->type == SDL_MOUSEMOTION) {
+    if (e->type == SDL_MOUSEMOTION)
+    {
         int x = e->motion.x;
         int y = e->motion.y;
 
@@ -124,22 +125,39 @@ int initMenu(Menu* menu, SDL_Renderer* renderer)
     return 1;
 }
 
-void handleMenu(Menu* menu, SDL_Event* e, int* running)
-{
-    for (int i = 0; i < NB_BUTTONS + 1; i++) {
+/* ================= FIXED MENU HANDLER ================= */
 
+int handleMenu(Menu* menu, SDL_Event* e)
+{
+    for (int i = 0; i < NB_BUTTONS + 1; i++)
+    {
         handleButton(&menu->buttons[i], e);
 
-        if (isClicked(&menu->buttons[i], e)) {
-
+        if (isClicked(&menu->buttons[i], e))
+        {
             if (menu->clickSound)
                 Mix_PlayChannel(-1, menu->clickSound, 0);
 
             if (i == 4)
-                *running = 0;
+                return -1;  // QUIT
+
+            if (i == 3)
+                return 1;   // OPTIONS
+
+            if (i == 1 || i == 6)
+                return 2;   // START / QUIZ
+
+            if (i == 2)
+                return 3;   // BEST SCORE
+
+            return 0;       // MAIN MENU
         }
     }
+
+    return 0;
 }
+
+/* ================= RENDER ================= */
 
 void renderMenu(Menu* menu, SDL_Renderer* renderer)
 {
@@ -151,6 +169,8 @@ void renderMenu(Menu* menu, SDL_Renderer* renderer)
         renderButton(&menu->buttons[i], renderer);
 }
 
+/* ================= CLEAN ================= */
+
 void destroyMenu(Menu* menu)
 {
     SDL_DestroyTexture(menu->background);
@@ -161,7 +181,8 @@ void destroyMenu(Menu* menu)
     if (menu->clickSound)
         Mix_FreeChunk(menu->clickSound);
 
-    if (menu->bgMusic) {
+    if (menu->bgMusic)
+    {
         Mix_HaltMusic();
         Mix_FreeMusic(menu->bgMusic);
     }
