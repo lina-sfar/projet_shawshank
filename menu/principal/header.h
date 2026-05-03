@@ -39,6 +39,6 @@ void destroyButton(Button* btn);
 
 /* MENU */
 int initMenu(Menu* menu, SDL_Renderer* renderer);
-void handleMenu(Menu* menu, SDL_Event* e, int* running);
+int handleMenu(Menu* menu, SDL_Event* e);
 void renderMenu(Menu* menu, SDL_Renderer* renderer);
 void destroyMenu(Menu* menu);
