@@ -1,6 +1,6 @@
 #include "header.h"
 
-/* State (only what we need) */
+/* State */
 #define MENU_PRINCIPAL 0
 #define MENU_OPTIONS 1
 
@@ -60,15 +60,18 @@ int main(int argc, char* argv[])
             if (e.type == SDL_QUIT)
                 running = 0;
 
-            /* 🔥 FIX: handleMenu MUST be inside event loop */
             int action = handleMenu(&menu, &e);
 
-            if (action == -1)   /* quit */
+            if (action == -1)
             {
                 running = 0;
             }
-            else if (action == MENU_OPTIONS)   /* OPEN OPTIONS */
+            else if (action == MENU_OPTIONS)
             {
+                /* 🔥 FIX: prevent click bug */
+                SDL_Delay(150);
+                SDL_FlushEvents(SDL_FIRSTEVENT, SDL_LASTEVENT);
+
                 run_options(renderer);
             }
         }
