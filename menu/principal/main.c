@@ -1,4 +1,4 @@
- #include "header.h"
+#include "header.h"
 
 /* State (only what we need) */
 #define MENU_PRINCIPAL 0
@@ -59,18 +59,18 @@ int main(int argc, char* argv[])
         {
             if (e.type == SDL_QUIT)
                 running = 0;
-        }
 
-        /* Handle menu logic */
-        int action = handleMenu(&menu, &e);
+            /* 🔥 FIX: handleMenu MUST be inside event loop */
+            int action = handleMenu(&menu, &e);
 
-        if (action == -1)   /* quit */
-        {
-            running = 0;
-        }
-        else if (action == MENU_OPTIONS)   /* OPEN OPTIONS */
-        {
-            run_options(renderer);
+            if (action == -1)   /* quit */
+            {
+                running = 0;
+            }
+            else if (action == MENU_OPTIONS)   /* OPEN OPTIONS */
+            {
+                run_options(renderer);
+            }
         }
 
         SDL_RenderClear(renderer);
